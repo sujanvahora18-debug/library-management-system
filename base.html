@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Library Management{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'library/style.css' %}"></head>
+<body>
+    <header class="topbar">
+        <div class="container nav-wrap">
+            <a class="brand" href="{% url 'library:dashboard' %}">LibraryHub</a>
+            <nav class="nav">
+                <a href="{% url 'library:dashboard' %}">Dashboard</a>
+                <a href="{% url 'library:book_list' %}">Books</a>
+                <a href="{% url 'library:member_list' %}">Members</a>
+                <a href="{% url 'library:borrow_list' %}">Borrows</a>
+                <a href="{% url 'library:fine_list' %}">Fines</a>
+                <a href="{% url 'library:issue_book' %}">Issue</a>
+                <a href="{% url 'library:return_book' %}">Return</a>
+                <a href="{% url 'admin:index' %}" target="_blank" rel="noopener">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% if messages %}
+            <section class="messages">
+                {% for message in messages %}
+                    <div class="msg msg-{{ message.tags|default:'info' }}">{{ message }}</div>
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

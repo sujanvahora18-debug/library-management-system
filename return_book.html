@@ -1,0 +1,16 @@
+{% extends 'library/base.html' %}
+{% block title %}Return Book | LibraryHub{% endblock %}
+{% block content %}
+<section class="form-panel">
+    <h1>Return Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="hint">Late return fine: $5 per day after due date.</div>
+        <div class="form-actions">
+            <button class="btn primary" type="submit">Return</button>
+            <a class="btn" href="{% url 'library:dashboard' %}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

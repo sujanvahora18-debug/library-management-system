@@ -1,0 +1,33 @@
+{% extends 'library/base.html' %}
+{% block title %}Fines | LibraryHub{% endblock %}
+{% block content %}
+<section class="panel-head">
+    <h1>Fine Records</h1>
+</section>
+<section class="table-panel">
+    <table>
+        <thead>
+            <tr>
+                <th>Member</th>
+                <th>Book</th>
+                <th>Days Late</th>
+                <th>Amount</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fine in fines %}
+            <tr>
+                <td>{{ fine.borrow.member.full_name }}</td>
+                <td>{{ fine.borrow.book.title }}</td>
+                <td>{{ fine.days_late }}</td>
+                <td>${{ fine.amount }}</td>
+                <td>{{ fine.created_at }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No fines recorded.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

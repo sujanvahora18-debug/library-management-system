@@ -1,0 +1,16 @@
+{% extends 'library/base.html' %}
+{% block title %}Issue Book | LibraryHub{% endblock %}
+{% block content %}
+<section class="form-panel">
+    <h1>Issue Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="hint">Due date will be set automatically to 7 days from borrow date.</div>
+        <div class="form-actions">
+            <button class="btn primary" type="submit">Issue</button>
+            <a class="btn" href="{% url 'library:dashboard' %}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'library/base.html' %}
+{% block title %}Dashboard | LibraryHub{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <h1>Smart Library Management</h1>
+        <p>Track books, members, borrowing history, and late-return fines in one place.</p>
+    </div>
+    <div class="hero-actions">
+        <a class="btn primary" href="{% url 'library:issue_book' %}">Issue Book</a>
+        <a class="btn" href="{% url 'library:return_book' %}">Return Book</a>
+    </div>
+</section>
+
+<section class="cards">
+    <article class="card"><h3>Total Books</h3><p>{{ book_count }}</p></article>
+    <article class="card"><h3>Total Members</h3><p>{{ member_count }}</p></article>
+    <article class="card"><h3>Active Borrows</h3><p>{{ active_borrows }}</p></article>
+    <article class="card"><h3>Total Fines</h3><p>${{ total_fines }}</p></article>
+</section>
+
+<section class="table-panel">
+    <h2>Recent Borrow Activity</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Member</th>
+                <th>Book</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for borrow in recent_borrows %}
+            <tr>
+                <td>{{ borrow.member.full_name }}</td>
+                <td>{{ borrow.book.title }}</td>
+                <td>{{ borrow.borrow_date }}</td>
+                <td>{{ borrow.due_date }}</td>
+                <td>
+                    {% if borrow.return_date %}
+                        Returned
+                    {% else %}
+                        Active
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No borrow records yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'library/base.html' %}
+{% block title %}Book Form | LibraryHub{% endblock %}
+{% block content %}
+<section class="form-panel">
+    <h1>{% if form.instance.pk %}Edit Book{% else %}Add Book{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button class="btn primary" type="submit">Save</button>
+            <a class="btn" href="{% url 'library:book_list' %}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

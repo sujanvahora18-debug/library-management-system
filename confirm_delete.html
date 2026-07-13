@@ -1,0 +1,15 @@
+{% extends 'library/base.html' %}
+{% block title %}Confirm Delete | LibraryHub{% endblock %}
+{% block content %}
+<section class="form-panel danger-panel">
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete <strong>{{ object }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button class="btn danger" type="submit">Yes, Delete</button>
+            <a class="btn" href="javascript:history.back()">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
