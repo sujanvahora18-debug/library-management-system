@@ -1,0 +1,2 @@
+# library managment system
+The main objective of this project is to digitize and simplify library management by reducing manual work, improving data accuracy, tracking book availability, managing member records, and automating borrowing, returning, and fine management.  This project demonstrates practical implementation of full-stack web development concepts, database management, CRUD operations, authentication, and real-world library workflow automation.
